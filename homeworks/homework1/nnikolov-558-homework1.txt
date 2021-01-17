@@ -247,7 +247,7 @@ a.length is2
 ```java
 Rational.java
 
-<BS>niko@toolbox homework1]$ cat Rational.java 
+[niko@toolbox homework1]$ cat Rational.java 
 /**
  * Class Rational.
  * Nikolay Nikolov

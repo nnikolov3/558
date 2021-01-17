@@ -36,22 +36,17 @@ class TestRunner {
 
   /**
    * Constructor for the TestRunner.
-   *
-   * @param name - test name
-   * @param ret - returned value from function tested
-   * @param exp - expected value from function tested
-   * @param index - test index
    */
   TestRunner(
-    final String name,
-    final double ret,
-    final double exp,
-    final int index
+    final String _name,
+    final double _ret,
+    final double _exp,
+    final int _index
   ) {
-    this.testName = name;
-    this.returnedValue = ret;
-    this.expectedValue = exp;
-    this.testIndex = index;
+    this.testName = _name;
+    this.returnedValue = _ret;
+    this.expectedValue = _exp;
+    this.testIndex = _index;
   }
 
   // function to run the test
@@ -72,41 +67,31 @@ class TestRunner {
 
 public class ClientRational extends Rational {
 
-  /**
-   * Main.
-   * Bellow are the tests
-   * @param args - command line input
-   */
-  public static void main(final String[] args) {
+  // main
+  public static void main(String[] args) {
     // Test#1
-   final int numer = 1;
-   final int denom = 5;
-    Rational ratObj = new Rational(numer, denom);
+    Rational ratObj = new Rational(1, 5);
     double sum = ratObj.sum();
-    final int expectedSum = 6;
-    int testIndex = 1;
     TestRunner runTest1 = new TestRunner(
       "sum should return 6 when num = 1 and den = 5",
       sum,
-      expectedSum,
-      testIndex
+      6,
+      1
     );
     runTest1.runner();
     // Test#2
     double multiply = ratObj.multiply();
-    final int expectedMultiply = 5;
-    testIndex = 2;
     TestRunner runTest2 = new TestRunner(
       "multiply should return 5 when num = 1 and den = 5",
       multiply,
-      expectedMultiply,
-      testIndex
+      5,
+      2
     );
     runTest2.runner();
     // Test#3
     String returnedString = ratObj.toString();
     String expectedString = "Numerator   = 1.0\n" + "Denominator = 5.0\n";
-    if (returnedString.equals(expectedString)) {
+    if (returnedString.equals(expectedString) == true) {
       System.out.println("Test: 3");
       System.out.println("Testing toString()");
       System.out.println(returnedString);

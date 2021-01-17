@@ -1,5 +1,7 @@
 /**
  * Client for Rational class.
+ * Nikolay Nikolov
+ * ECE558 Winter 2021
  * It has a test runner
  * that make simple comparison
  * assertion like, but assertion is normally
@@ -79,8 +81,8 @@ public class ClientRational extends Rational {
    */
   public static void main(final String[] args) {
     // Test#1
-   final int numer = 1;
-   final int denom = 5;
+    final int numer = 1;
+    final int denom = 5;
     Rational ratObj = new Rational(numer, denom);
     double sum = ratObj.sum();
     final int expectedSum = 6;
@@ -110,6 +112,35 @@ public class ClientRational extends Rational {
       System.out.println("Test: 3");
       System.out.println("Testing toString()");
       System.out.println(returnedString);
+      System.out.println("Success");
+      System.out.println("---------------");
+    }
+    // Test#4
+    // Test Setter and Getter for Numerator
+    final double newNumerator = 15;
+    ratObj.setNumerator(newNumerator);
+    final int expectedNumerator = 15;
+    String expectedNewString = "Numerator   = 15.0\n" + "Denominator = 5.0\n";
+    String returnedNewString = ratObj.toString();
+    if (returnedNewString.equals(expectedNewString)) {
+      System.out.println("Test: 4");
+      System.out.println("Testing setting the Numerator to 15");
+      System.out.println(returnedNewString);
+      System.out.println("Success");
+      System.out.println("---------------");
+    }
+    // Test#5
+    // Test Setter and Getter for Denominator
+    final double newDenominator = 20;
+    ratObj.setDenominator(newDenominator);
+    final int expectedDenominator = 20;
+    final String expectedNewDenominator =
+      "Numerator   = 15.0\n" + "Denominator = 20.0\n";
+    final String returnedNewDenominator = ratObj.toString();
+    if (returnedNewDenominator.equals(expectedNewDenominator)) {
+      System.out.println("Test: 5");
+      System.out.println("Testing setting the Denominator to 20");
+      System.out.println(returnedNewDenominator);
       System.out.println("Success");
       System.out.println("---------------");
     }

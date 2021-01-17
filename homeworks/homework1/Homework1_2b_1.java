@@ -11,13 +11,11 @@ import java.io.*;
 import java.util.*;
 
 public class Homework1_2b_1 {
-	
-	public static void main(String[] args) {
-		for (int i = 0; i < 3; i++){
-		System.out.println("Hello");
-		}
-	
-	}
 
+  public static void main(String[] args) {
+    for (int i = 0; i < 3; i++) {
+      System.out.println("Hello");
+    }
+  }
 }
 // End

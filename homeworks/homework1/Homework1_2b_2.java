@@ -12,12 +12,10 @@ import java.util.*;
 
 public class Homework1_2b_2 {
 
-	public static void main(String[] args) {
-		double a = 32, b = 10;
-		double c = a / b;
-		System.out.println("The value of c is " + c);
-
-	}
-
+  public static void main(String[] args) {
+    double a = 32, b = 10;
+    double c = a / b;
+    System.out.println("The value of c is " + c);
+  }
 }
 // End

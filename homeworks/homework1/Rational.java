@@ -33,77 +33,75 @@ The Wikipedia article lists the equations for performing these operations.
 
 */
 
-import java.io.*;
-import java.util.*;
-import java.lang.*;
-
 class Rational {
-	// attribute
-	private double num;
-	private double den = 1;
 
-	// constructor
-	public	Rational() {
-	}
+  // attribute
+  private double num;
+  private double den = 1;
 
-	// constructor
-	public Rational(double numerator, double denominator) {
-		if(denominator == 0) {
-			System.err.println("Error.Denominator cannot be zero");
-		}
-		this.num = numerator;
-		this.den = denominator;
-	}
+  // constructor
+  public Rational() {}
 
-	// Getter Numerator
-	public double getNumerator() {
-		return num;
-	}
+  // constructor
+  public Rational(double numerator, double denominator) {
+    if (denominator == 0) {
+      System.err.println("Error.Denominator cannot be zero");
+    }
+    this.num = numerator;
+    this.den = denominator;
+  }
 
-	// Setter Numerator
-	public double setNumerator(double newNumerator) {
-		this.num = newNumerator;
-		return this.num;
-	}
+  // Getter Numerator
+  public double getNumerator() {
+    return num;
+  }
 
-	// Getter Denominator
-	public double getDenominator () {
-		return den;
-	}
+  // Setter Numerator
+  public double setNumerator(double newNumerator) {
+    this.num = newNumerator;
+    return this.num;
+  }
 
-	// Setter Denominator
-	public double setDenominator (double newDenominator){
-		this.den = newDenominator;
-		return this.den;
-	}
+  // Getter Denominator
+  public double getDenominator() {
+    return den;
+  }
 
-	// Equals()
-	public boolean equals() {
-		double frac = 0.001;
-		if (frac == (Math.abs(num/den))){
-			return true;
-		}
-		return false;
-	}
+  // Setter Denominator
+  public double setDenominator(double newDenominator) {
+    this.den = newDenominator;
+    return this.den;
+  }
 
-	// toString()
-	public String toString() {
-		StringBuffer buf = new StringBuffer();
-		buf.append( "Numerator   = " );  buf.append( num );  buf.append( "\n" );
-		buf.append( "Denominator = " );  buf.append( den );  buf.append( "\n" );
-		return buf.toString();
-	}
+  // Equals()
+  public boolean equals() {
+    double frac = 0.001;
+    if (frac == (Math.abs(num / den))) {
+      return true;
+    }
+    return false;
+  }
 
-	// multiplication of two rational numbers
-	public double multiply (){
-		return (num * den);
-	}
+  // toString()
+  public String toString() {
+    StringBuffer buf = new StringBuffer();
+    buf.append("Numerator   = ");
+    buf.append(num);
+    buf.append("\n");
+    buf.append("Denominator = ");
+    buf.append(den);
+    buf.append("\n");
+    return buf.toString();
+  }
 
-	// addition of two rational numbers
-	public double sum (){
-		return (num + den);
-	}
+  // multiplication of two rational numbers
+  public double multiply() {
+    return (num * den);
+  }
 
+  // addition of two rational numbers
+  public double sum() {
+    return (num + den);
+  }
 }
-
 // End

@@ -1,0 +1,6 @@
+# Ignore artifacts:
+package*
+node_modules/*
+.prettier*
+.*
+

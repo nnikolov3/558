@@ -1,0 +1,31 @@
+{
+  "name": "558",
+  "version": "1.0.0",
+  "description": "homeworks for 558",
+  "main": "index.js",
+  "dependencies": {
+    "prettier": "^2.2.1",
+    "prettier-plugin-java": "^1.0.1"
+  },
+  "devDependencies": {
+    "java-checkstyle": "^0.1.0",
+    "mega-linter-runner": "^4.24.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nnikolov3/558.git"
+  },
+  "keywords": [
+    "java",
+    "android"
+  ],
+  "author": "nnikolov3",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nnikolov3/558/issues"
+  },
+  "homepage": "https://github.com/nnikolov3/558#readme"
+}

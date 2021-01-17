@@ -12,18 +12,18 @@ import java.util.*;
 
 public class Homework1_2b_3 {
 
-	public static void main(String[] args) {
-		int[][] a = {{9,8,7,6},{10,20,30,40}};
-		for (int j = 0; j <= a.length; j++) {
-			System.out.println("a[1].length is" + a[1].length);
-			System.out.println("a.length is" + a.length);
+  public static void main(String[] args) {
+    int[][] a = { { 9, 8, 7, 6 }, { 10, 20, 30, 40 } };
+    for (int j = 0; j <= a.length; j++) {
+      System.out.println("a[1].length is" + a[1].length);
+      System.out.println("a.length is" + a.length);
 
-			if (a[ 1 ][j] == 20) {
-				System.out.println("Found 20 at column index " + j + " of second row");
-			}
-		}
-
-	}
-
+      if (a[1][j] == 20) {
+        System.out.println(
+          "Found 20 at column index " + j + " of second row"
+        );
+      }
+    }
+  }
 }
 // End

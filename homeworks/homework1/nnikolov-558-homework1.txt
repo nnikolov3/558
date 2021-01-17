@@ -1,0 +1,218 @@
+Question 2: Java Basics
+
+a)
+
+Source code: 
+
+/**
+ * Nikolay Nikolov ECE558 Winter 2021
+ * <h2>Question 2 a)
+ * <h2>Write a method that takes an integer input from the user, then prompts
+ * for additional integers and prints all of the integers that are greater than
+ * or equal to the original input until the user enters a negative number, which
+ * is not printed
+ */
+
+import java.io.*;
+import java.util.*;
+
+public class Homework1 {
+	public static void main(String[] args){
+		Scanner scanner = new Scanner(System.in);
+		int[] previousNumbers = new int[100]; // store the user's previous numbers
+		int index = 0;
+		int originalInput = -1; 
+		// ---------------------
+		while (true){
+			System.out.println("Type a number.Negative number will make me exit");
+			// Get user input
+			int userNumber = Integer.parseInt(scanner.nextLine());
+			// if the number is negative exit
+			if(userNumber < 0 ){
+				System.out.println("Goodbye!");
+				System.exit(-1);
+			}
+			else {
+				// The very first time the App is running
+				if (originalInput < 0){
+					originalInput = userNumber;
+				}
+				// Store numbers in array
+				previousNumbers[index] = userNumber;
+				// Print numbers >= originalInput
+				for (int i = 0; i < previousNumbers.length; i++)
+				{
+					if (previousNumbers[i] >= originalInput ) 
+					{
+						System.out.println("[ " + previousNumbers[i] + ">=" + originalInput + " ]");
+					}
+				}
+				// increment index for the array of previous numbers
+				index = index + 1;
+			}
+		}
+		// ------------------------
+		// While loop ends here
+	}
+
+}
+
+
+Traces from testing:
+
+
+[niko@toolbox homework1]$ java Homework1
+Type a number.Negative number will make me exit
+9
+[ 9>=9 ]
+Type a number.Negative number will make me exit
+1
+[ 9>=9 ]
+Type a number.Negative number will make me exit
+0
+[ 9>=9 ]
+Type a number.Negative number will make me exit
+10
+[ 9>=9 ]
+[ 10>=9 ]
+Type a number.Negative number will make me exit
+3
+[ 9>=9 ]
+[ 10>=9 ]
+Type a number.Negative number will make me exit
+11
+[ 9>=9 ]
+[ 10>=9 ]
+[ 11>=9 ]
+Type a number.Negative number will make me exit
+12
+[ 9>=9 ]
+[ 10>=9 ]
+[ 11>=9 ]
+[ 12>=9 ]
+Type a number.Negative number will make me exit
+13
+[ 9>=9 ]
+[ 10>=9 ]
+[ 11>=9 ]
+[ 12>=9 ]
+[ 13>=9 ]
+Type a number.Negative number will make me exit
+-1
+Goodbye!
+
+Question 2: 
+
+b ) 
+
+1 ) The following code sequence is intended to print Hello three times; however, it
+only prints Hello once. Where is the problem in this code sequence?
+
+// Original Code  
+
+public static void main(String[] args);
+for (int i = 0; i < 3; i++){ 
+	System.out.println("Hello");
+
+}
+// -----------------------------
+
+Removing the semicolon. With the simicolon, it runs 3 loops and then prints
+
+// Modified Code 
+
+public class Homework1_2b_1 {
+
+	public static void main(String[] args) {
+		for (int i = 0; i < 3; i++){ 
+			System.out.println("Hello");
+		}
+
+	}
+
+}
+
+Traces:
+[niko@toolbox homework1]$ java Homework1_2b_1
+Hello
+Hello
+Hello
+[niko@toolbox homework1]$ 
+
+// -----------------------------------------
+
+2) You coded the following in class Hw1.java:
+int a = 32, b = 10;
+double c = a / b;
+System.out.println(“The value of c is “ + c);
+You expected the value of c to be 3.2, but instead c was displayed as 3. Explain
+what the problem is and write the code to fix it.
+
+The problem is that a and b are integers
+
+Correct code:
+
+public static void main(String[] args) {
+	double a = 32, b = 10;
+	double c = a / b;  
+	System.out.println("The value of c is " + c);         
+
+}
+
+Traces:
+
+[niko@toolbox homework1]$ java Homework1_2b_2
+The value of c is 3.20
+// ------------------------------------------------
+
+
+3) 
+
+You coded the following:
+int[][] a = {{9,8,7,6},{10,20,30,40}};
+for (int j = 0, j <= a[1].length; j++) {
+	if (a[ 1 ][j] == 20) {
+		System.out.println(“Found 20 at column index “ + j +
+				+ “ of second row”);
+	}
+}
+The code compiles properly, but when you run the program you get the following
+output:
+Found 20 at column index 1 of second row
+Exception in thread “main”
+	java.lang.ArrayIndexOutOfBoundsException: 4 at
+Test.main(Test.java:14)
+
+	In order the code to work we need to remove the '[1]'. Since the length of a is 2 not 4. 
+
+	Correct Code: 
+
+	public static void main(String[] args) {
+		int[][] a = {{9,8,7,6},{10,20,30,40}};
+		for (int j = 0; j <= a.length; j++) {   
+			System.out.println("a[1].length is" + a[1].length);
+			System.out.println("a.length is" + a.length);
+
+			if (a[ 1 ][j] == 20) {
+				System.out.println("Found 20 at column index " + j + " of second row");                                                                  
+			}
+		}
+
+	}
+
+
+Traces:
+
+[niko@toolbox homework1]$ java Homework1_2b_3
+a[1].length is4
+a.length is2
+a[1].length is4
+a.length is2
+Found 20 at column index 1 of second row
+a[1].length is4
+a.length is2
+
+
+// --------------------------------------------
+
+

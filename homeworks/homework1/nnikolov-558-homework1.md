@@ -4,6 +4,9 @@
 * Winter 2021
 * Prof. Roy Kravitz
 
+
+## Question 1:
+
 ## Question 2: Java Basics
 
 ### a)
@@ -1040,3 +1043,48 @@ public class Gamer extends FunGame {
 [niko@toolbox homework1]$ 
 
 ```
+
+#### Traces :
+
+```text
+
+[niko@toolbox homework1]$ javac -d . *.java
+[niko@toolbox homework1]$ java Gamer
+Test: 1
+Testing setting the description
+description: New board game
+Success
+---------------
+Test: 2
+getMinPlayers should return 2
+Success
+---------------
+Test: 3
+getMaxPlayers should return 4
+Success
+---------------
+Test: 4
+getTime should return 20
+Success
+---------------
+Test: 5
+getAllowTie should return 'yes'
+yes
+Success
+---------------
+Test: 6
+setAllowTie should return 'no'
+no
+Success
+---------------
+Error. Max num exceeded
+Test: 7
+It should print error for exceeding max num
+New Players 10 > 4 Max Num
+Success
+---------------
+[niko@toolbox homework1]$ 
+
+```
+
+

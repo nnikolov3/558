@@ -7,11 +7,74 @@
 
 ## Question 1:
 
+* a
+
+1. When using the keyword extends, the subclass inherits the private members of its
+superclass. [ F ]
+
+2. In Java a static method can access static class variables but a non-static method cannot [ F ]
+
+3. An interface can contain one or more abstract methods [ T ]
+
+4. We can instantiate an array by assigning values when the array is declared. [ F ]
+
+5. The automatic conversion of a Java primitive numeric type to its wrapper class is called autoboxing [ T ]
+
+
+* b
+
+[15] Three key tenets of OO programming are encapsulation, inheritance, and
+overloading. Provide a short definition and describe how they are realized in the Java
+programming language.
+
+* Encapsulation
+    - Encapsulation in Java is a mechanism of wrapping the data (variables) and code acting on the data (methods) together as a single unit. In encapsulation, the variables of a class will be hidden from other classes, and can be accessed only through the methods of their current class.
+    
+    -   Declare the variables of a class as private.
+
+    -   Provide public setter and getter methods to modify and view the variables values.
+
+    Source: https://www.tutorialspoint.com/java/java_encapsulation.htm
+
+* Inheritance
+
+    - Inheritance can be defined as the process where one class acquires the properties (methods and fields) of another. With the use of inheritance the information is made manageable in a hierarchical order. 
+
+    - extends is the keyword used to inherit the properties of a class
+
+    Source: https://www.tutorialspoint.com/java/java_inheritance.htm
+
+* Overloading
+
+    - If a class has multiple methods having same name but different in parameters, it is known as Method Overloading
+
+    Source: https://www.javatpoint.com/method-overloading-in-java
+
+* c. (Select the best answer) 
+
+Interfaces are a special Java concept. Which of the following
+statements is true about interfaces?
+
+[x] In a class that implements two interfaces, the methods of both interfaces must
+be implemented.
+
+[] If one of the interface methods in an interface class (defined by ‘interface
+CLASSNAME’) has a body, all of them must have one.
+
+[] The constructor of an interface allocates the memory for its attributes.
+
+[] In class that implements two interfaces, only the methods of one interface must
+be implemented.
+
+[] Interfaces can only extend one superinterface because Java does not support
+multiple inheritance.
+
 ## Question 2: Java Basics
 
 ### a)
 
 #### Source code: 
+
 ```java
 
 /**

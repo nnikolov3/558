@@ -4,33 +4,38 @@
 
 public class Game {
 
-    /**
-     * Attribute
-     */ 
-    private String mDescription;
-    
-    /**
-     * Constructor
-     */ 
-    public Game(String description) {
-        setDescription(description);
-    }
+  /**
+   * Attribute.
+   */
+  private String mDescription;
 
-    /**
-     * Getter for Description
-     */ 
-    public String getDescription() {
-        return mDescription;
-    }
+  /**
+   * Constructor.
+   * @param description - String description of the game
+   */
+  public Game(final String description) {
+    setDescription(description);
+  }
 
-    /**
-     * Setter for Description
-     */ 
-    public void setDescription(String description) {
-        mDescription = description;
-    }
+  Game() {
+    //
+  }
 
-    public String toString() {
-        return(“description: “ + mDescription);
-    }
+  /**
+   * Getter for Description.
+   */
+  public String getDescription() {
+    return mDescription;
+  }
+
+  /**
+   * Setter for Description.
+   */
+  public void setDescription(String description) {
+    mDescription = description;
+  }
+
+  public String toString() {
+    return ("description: " + mDescription);
+  }
 }

@@ -538,3 +538,505 @@ Success
 ```
 
 ## Question 4
+
+### Source code 
+
+#### Game.java
+
+```java 
+
+/**
+ * Provided for HW1.
+ */
+
+public class Game {
+
+  /**
+   * Attribute.
+   */
+  private String mDescription;
+
+  /**
+   * Constructor.
+   * @param description - String description of the game
+   */
+  public Game(final String description) {
+    setDescription(description);
+  }
+
+  Game() {
+    //
+  }
+
+  /**
+   * Getter for Description.
+   */
+  public String getDescription() {
+    return mDescription;
+  }
+
+  /**
+   * Setter for Description.
+   */
+  public void setDescription(String description) {
+    mDescription = description;
+  }
+
+  public String toString() {
+    return ("description: " + mDescription);
+  }
+}
+[niko@toolbox homework1]$ 
+
+```
+
+#### BoardGame.java
+
+```java
+
+/**
+ * Board Game class that inherits from Game.
+ * HW 1 Q4
+ */
+
+class BoardGame extends Game {
+
+  /**
+   * Constructor.
+   * @param description - String for the super class
+   * @param number - number of players
+   * @param tie - String [yes/no] to allow tie
+   * @param min - int min number of users
+   * @param max - int max number of users
+   */
+  BoardGame(
+    final String description,
+    final int number,
+    final String tie,
+    final int min,
+    final int max
+  ) {
+    super(description);
+    if (number == 0 || number == 1) {
+      System.err.println("Error.Cannot play with 0 or 1 players");
+    }
+    this.numberPlayers = number;
+    this.allowTie = tie;
+    this.minNum = min;
+    this.maxNum = max;
+  }
+
+  BoardGame() {
+    //
+  }
+
+  /**
+   * Attribute for the number of players.
+   */
+  private int numberPlayers;
+
+  /**
+   * Attribute for the max number of players.
+   */
+  private int maxNum;
+
+  /**
+   * Attribute for the min number of players.
+   */
+  private int minNum;
+
+  /**
+   * Attribute for whethere the game can end in tie.
+   */
+  private String allowTie;
+
+  /**
+   * Setter for players.
+   * @param players - number of players
+   */
+  public void setPlayers(final int players) {
+    this.numberPlayers = players;
+  }
+
+  /**
+   * Getter for players.
+   * @return int
+   */
+  public int getPlayers() {
+    return numberPlayers;
+  }
+
+  /**
+   * Setter for allowTie.
+   * @param tie - string [yes/no] for to allow a tie
+   */
+  public void setAllowTie(final String tie) {
+    this.allowTie = tie;
+  }
+
+  /**
+   * Getter for allowTie.
+   * @return String
+   */
+  public String getAllowTie() {
+    return allowTie;
+  }
+
+  /**
+   * overwritting toString().
+   * @return String
+   */
+  public String toString() {
+    return super.toString();
+  }
+}
+[niko@toolbox homework1]$ 
+
+```
+
+#### FunGame.java
+
+```java
+
+[niko@toolbox homework1]$ cat FunGame.java 
+/**
+ * Class that uses the BoardGame class.
+ * HW 1 Q4
+ */
+
+class FunGame extends BoardGame {
+
+  /**
+   * Attribute for the min number of players.
+   */
+  private int min;
+
+  /**
+   * Attribute for the max number of players.
+   */
+  private int max;
+
+  /**
+   * Attribut for the time limit.
+   */
+  private int time;
+
+  /**
+   * Attribut for numger of players.
+   */
+  private int num;
+
+  /**
+   * Constructor.
+   * @param description - String for the super class
+   * @param number - number of players
+   * @param tie - String [yes/no] to allow tie
+   * @param minNum - int minimum number of players
+   * @param maxNum - int maximum number of players
+   * @param limitTime - int for time limit to finish the game
+   */
+
+  FunGame(
+    final String description,
+    final int number,
+    final String tie,
+    final int minNum,
+    final int maxNum,
+    final int limitTime
+  ) {
+    super(description, number, tie, minNum, maxNum);
+    if (number > maxNum) {
+      System.err.println("Error. Max num exceeded");
+    }
+    if (number < minNum) {
+      System.err.println("Error. Not enough players");
+    }
+
+    this.min = minNum;
+    this.max = maxNum;
+    this.time = limitTime;
+    this.num = number;
+  }
+
+  FunGame() {
+    //
+  }
+
+  /**
+   * Setter for min \# of players.
+   * @param minPlayers - number of players
+   */
+  public void setMinPlayers(final int minPlayers) {
+    if (minPlayers < num) {
+      System.err.println("Error. No enough players");
+    } else {
+      this.min = minPlayers;
+    }
+  }
+
+  /**
+   * Getter for min \# of players.
+   * @return int
+   */
+  public int getMinPlayers() {
+    return min;
+  }
+
+  /**
+   * Setter for max \# of players.
+   * @param maxPlayers - number of players
+   */
+  public void setMaxPlayers(final int maxPlayers) {
+    if (num > maxPlayers) {
+      System.err.println("Error. Too many players");
+    } else {
+      this.max = maxPlayers;
+    }
+  }
+
+  /**
+   * Getter for max \# of players.
+   * @return int
+   */
+  public int getMaxPlayers() {
+    return max;
+  }
+
+  /**
+   * Setter for time limit.
+   * @param limitTime - int time in minutes
+   */
+  public void setTime(final int limitTime) {
+    this.time = limitTime;
+  }
+
+  /**
+   * Getter for time limit.
+   * @return int
+   */
+  public int getTime() {
+    return time;
+  }
+
+  /**
+   * overwritting toString().
+   * @return String
+   */
+  public String toString() {
+    return super.toString();
+  }
+}
+[niko@toolbox homework1]$ 
+
+```
+
+#### Gamer.java - Client for of the above classes
+
+```java
+
+[niko@toolbox homework1]$ cat Gamer.java
+/*
+ * Client for FunGame,BoarGame,Game.
+ * Nikolay Nikolov
+ * ECE558 Winter 2021
+ * locked in Java
+ */
+
+class TestRunnerGame {
+
+  /*
+   * Simple TestRunner.
+   */
+
+  /**
+   * Returned value from a function call.
+   */
+  private double returnedValue;
+
+  /**
+   * Expected value if the function returns correctly.
+   */
+
+  private double expectedValue;
+  /**
+   * Test index is the test count.
+   */
+
+  private int testIndex;
+  /**
+   * Test name is the description of the test.
+   * Example. function A should return B when input is C
+   */
+
+  private String testName;
+
+  /**
+   * Constructor for the TestRunner.
+   *
+   * @param name - test name
+   * @param ret - returned value from function tested
+   * @param exp - expected value from function tested
+   * @param index - test index
+   */
+  TestRunnerGame(
+    final String name,
+    final double ret,
+    final double exp,
+    final int index
+  ) {
+    this.testName = name;
+    this.returnedValue = ret;
+    this.expectedValue = exp;
+    this.testIndex = index;
+  }
+
+  // function to run the test
+  public void runner() {
+    if (returnedValue == expectedValue) {
+      System.out.println("Test: " + testIndex);
+      System.out.println(testName);
+      System.out.println("Success");
+      System.out.println("---------------");
+    } else {
+      System.out.println("Test: " + testIndex);
+      System.out.println(testName);
+      System.out.println("Fail");
+      System.out.println("---------------");
+    }
+  }
+}
+
+public class Gamer extends FunGame {
+
+  /**
+   * Main.
+   * Bellow are the tests
+   * @param args - command line input
+   */
+  public static void main(final String[] args) {
+    /*
+     * Game attributes:
+     *  - description
+     *  Board Game attributes:
+     *  - number of players
+     *  - allow tie [yes/no]
+     * Fun Game attributes
+     *  - min number of players
+     *  - max number of players
+     *  - time limit for the game
+     */
+
+    final String description = "New board game";
+    final int players = 4;
+    final String allow = "yes";
+    final int minNumber = 2;
+    final int maxNumber = 4;
+    final int time = 1;
+
+    FunGame playGame = new FunGame(
+      description,
+      players,
+      allow,
+      minNumber,
+      maxNumber,
+      time
+    );
+
+    // Test#1
+    final String returnedDesc = playGame.toString();
+    final String expectDesc = "description: New board game";
+    if (expectDesc.equals(returnedDesc)) {
+      System.out.println("Test: 1");
+      System.out.println("Testing setting the description");
+      System.out.println(returnedDesc);
+      System.out.println("Success");
+      System.out.println("---------------");
+    }
+    // Test#2
+    int testIndex = 2;
+    final int returnedMin = playGame.getMinPlayers();
+    TestRunnerGame runTest1 = new TestRunnerGame(
+      "getMinPlayers should return 2",
+      returnedMin,
+      minNumber,
+      testIndex
+    );
+    runTest1.runner();
+
+    // Test#3
+    final int index = 3;
+    final int returnedMax = playGame.getMaxPlayers();
+    TestRunnerGame runTest2 = new TestRunnerGame(
+      "getMaxPlayers should return 4",
+      returnedMax,
+      maxNumber,
+      index
+    );
+    runTest2.runner();
+
+    // Test#4
+    final int indexTest = 4;
+    final int returnedTime = playGame.getTime();
+    TestRunner runTest3 = new TestRunner(
+      "getTime should return 20",
+      returnedTime,
+      time,
+      indexTest
+    );
+    runTest3.runner();
+
+    // Test#5
+    final String returnedAllowTie = playGame.getAllowTie();
+    if (returnedAllowTie.equals(allow)) {
+      System.out.println("Test: 5");
+      System.out.println("getAllowTie should return 'yes'");
+      System.out.println(returnedAllowTie);
+      System.out.println("Success");
+      System.out.println("---------------");
+    }
+
+    // Test#6
+    final String setToNo = "no";
+    playGame.setAllowTie(setToNo); // set to no
+    final String returnedAllowTieNo = playGame.getAllowTie();
+    if (returnedAllowTieNo.equals(setToNo)) {
+      System.out.println("Test: 6");
+      System.out.println("setAllowTie should return 'no'");
+      System.out.println(returnedAllowTieNo);
+      System.out.println("Success");
+      System.out.println("---------------");
+    }
+    // Test#7
+
+    final String secondDescription = "Another board game";
+    final int secondPlayers = 10;
+    final String allowTie = "no";
+    final int secondMinNumber = 2;
+    final int secondMaxNumber = 4;
+    final int secondTime = 10;
+
+    FunGame newGame = new FunGame(
+      secondDescription,
+      secondPlayers,
+      allowTie,
+      secondMinNumber,
+      secondMaxNumber,
+      secondTime
+    );
+
+    final String newString = newGame.toString();
+    final int getNewPlayers = newGame.getPlayers();
+    System.out.println("Test: 7");
+    System.out.println("It should print error for exceeding max num");
+    System.out.println(
+      "New Players " + getNewPlayers + " > " + secondMaxNumber + " Max Num"
+    );
+
+    System.out.println("Success");
+    System.out.println("---------------");
+  }
+}
+// End
+[niko@toolbox homework1]$ 
+
+```

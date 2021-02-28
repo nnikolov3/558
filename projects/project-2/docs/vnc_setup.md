@@ -130,6 +130,6 @@ After than you can ssh without typing your password every time
 
 Example of successful VNC session:
 
-(images/successful-vnc-session.png)
+![](images/successful-vnc-session.png)
 
 

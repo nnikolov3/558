@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "java-checkstyle": "^0.1.0",
-    "mega-linter-runner": "^4.24.0"
+    "mega-linter-runner": "^4.26.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -8,7 +8,7 @@ import paho.mqtt.client as mqtt
 from time import sleep
 import subprocess
 import sys
-
+import re
 
 # Print a welcoming message
 print("Subscriber for DHT22 and Explorer Pro HAT")
@@ -36,7 +36,8 @@ class Subscriber(object):
     def on_connect(CLIENT):
         # Subscribing in on_connect() means that if we lose the connection and
         # reconnect then subscriptions will be renewed.
-        CLIENT.subscribe("$SYS/#")
+        CLIENT.subscribe("led1")
+        CLIENT.subscribe("led2")
         return
 
     @staticmethod
@@ -72,24 +73,40 @@ class Subscriber(object):
         print("Connected")
         return
 
-    # The callback for when a PUBLISH message is received from the server.
-    def on_message(client, userdata, msg):
-        print("Received payload")
+    @staticmethod
+    def on_subscribe(CLIENT, userdata, mid, granted_qos):
+        print("Subscribed")
+        return
+
+    @staticmethod
+    def on_message(CLIENT, userdata, msg):
         payload = str(msg.payload)
-        if msg.topic == "led_1":
-            if payload == "on":
-                Subscriber.led_1_on()
-            elif payload == "off":
-                Subscriber.led_1_off()
 
-        elif msg.topic == "led_2":
+        if payload:
+            print("Payload received")
 
-            if payload == "on":
-                Subscriber.led_2_on()
-            elif payload == "off":
-                Subscriber.led_2_off()
+        is_on = re.compile("ON")
+        is_off = re.compile("OFF")
+
+        if str(msg.topic) == "led1":
+            print("Led 1 ...")
+            if is_on.search(payload):
+                print("Turning on Led 1 ...")
+                Subscriber.led1_on()
+            elif is_off.search(payload):
+                print("Turning off Led 1 ...")
+                Subscriber.led1_off()
+
+        elif str(msg.topic) == "led2":
+            print("Led 2 ...")
+            if is_on.search(payload):
+                print("Turning on Led 1 ...")
+                Subscriber.led2_on()
+            elif is_off.search(payload):
+                print("Turning off Led 2 ...")
+                Subscriber.led2_off()
         else:
-            print("Unknown cmd")
+            print("Waiting ...")
 
         return
 
@@ -97,26 +114,24 @@ class Subscriber(object):
 def main():
 
     # Callback for the led drivers
-    const.CLIENT.loop_start()
     Subscriber.start_deamon()
+    const.CLIENT.loop_start()
+    try:
+        const.CLIENT.on_connect = Subscriber.on_connect(const.CLIENT)
+        const.CLIENT.on_subscribe = Subscriber.on_subscribe
+        const.CLIENT.on_message = Subscriber.on_message
+        sleep(360)
 
-    const.CLIENT.on_connect = Subscriber.on_connect(const.CLIENT)
-    const.CLIENT.on_message = Subscriber.on_message
-    const.CLIENT.loop_forever()
-    while True:
-        try:
-            sleep(1.0)
+    except RuntimeError as error:
+        print(error)
+        sys.exit(1)
+        # Ctrl + C
+    except KeyboardInterrupt:
+        sys.exit(1)
 
-        except RuntimeError as error:
-            print(error)
-            sys.exit(1)
-            # Ctrl + C
-        except KeyboardInterrupt:
-            sys.exit(1)
-
-            # Catches any other exceptions.
-        except Exception:
-            sys.exit(1)
+        # Catches any other exceptions.
+    except Exception:
+        sys.exit(1)
 
 
 if __name__ == "__main__":

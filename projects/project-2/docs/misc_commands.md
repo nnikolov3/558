@@ -1,6 +1,6 @@
 # Useful commands
 
-- Find the IP address of Raspberry Pi 
+- Find the IP address of Raspberry Pi
     `hostname -I`
 
 - Find the status of the mosquitto service
@@ -8,6 +8,3 @@
 
 - MQTT client that publishes a message to the topic
     `moquitto_pub -V mqttv311 -t <topic> -m "<message>"
-
-
-

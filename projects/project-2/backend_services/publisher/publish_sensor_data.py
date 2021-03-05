@@ -86,7 +86,7 @@ class Publisher(object):
         HUMIDITY = round(DEVICE.humidity, 3)
         DATA = [DATE2[0], TEMPERATURE_F, TEMPERATURE_C, HUMIDITY]
         # ---------------------------------------
-        print("Created Payload")
+        print("Created Paylo`ad")
         return DATA
 
     @staticmethod
@@ -122,7 +122,6 @@ def main():
 
     constants.CLIENT.loop_start()
     Publisher.start_deamon()
-
     constants.CLIENT.on_connect = Publisher.on_connect(constants.CLIENT)
     while True:
 

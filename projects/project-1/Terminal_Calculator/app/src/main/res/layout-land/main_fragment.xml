@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/calculator"
@@ -26,19 +24,18 @@
     android:keyboardNavigationCluster="false"
     android:persistentDrawingCache="all"
     android:saveEnabled="true"
-    android:textAlignment="center"
     android:visibility="visible"
+    app:layoutDescription="@xml/main_fragment_scene"
     tools:context=".MainActivity"
     tools:visibility="visible">
 
     <TextView
         android:id="@+id/result"
-        android:layout_width="0dp"
-        android:layout_height="132dp"
-        android:layout_marginTop="77dp"
-        android:layout_marginBottom="78dp"
-        android:backgroundTint="#FFFFFF"
+        android:layout_width="212dp"
+        android:layout_height="53dp"
+        android:backgroundTint="#AA000000"
         android:backgroundTintMode="src_in"
+        android:breakStrategy="high_quality"
         android:defaultFocusHighlightEnabled="true"
         android:elegantTextHeight="true"
         android:focusableInTouchMode="true"
@@ -51,7 +48,6 @@
         android:outlineProvider="background"
         android:selectAllOnFocus="false"
         android:singleLine="true"
-        android:textAlignment="textStart"
         android:textColor="#00FF00"
         android:textColorHighlight="#FF3D00"
         android:textColorHint="#D500F9"
@@ -59,16 +55,17 @@
         android:typeface="monospace"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/userInputBottom"
-        app:layout_constraintStart_toStartOf="@+id/userInputBottom"
-        app:layout_constraintTop_toBottomOf="@+id/square_root"
+        app:layout_constraintEnd_toStartOf="@+id/add"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userInputBottom"
+        app:layout_constraintVertical_bias="0.488"
         tools:visibility="visible" />
 
     <EditText
         android:id="@+id/userInputBottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:allowUndo="true"
         android:cursorVisible="true"
         android:defaultFocusHighlightEnabled="true"
@@ -98,15 +95,17 @@
         android:textStyle="normal"
         android:typeface="monospace"
         android:visibility="visible"
-        app:layout_constraintStart_toStartOf="@+id/userInputTop"
-        app:layout_constraintTop_toBottomOf="@+id/userInputTop" />
+        app:layout_constraintBottom_toTopOf="@+id/result"
+        app:layout_constraintEnd_toStartOf="@+id/percent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userInputTop"
+        app:layout_constraintVertical_bias="0.469" />
 
     <EditText
         android:id="@+id/userInputTop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="76dp"
         android:allowUndo="true"
         android:backgroundTint="#FFFFFF"
         android:clickable="true"
@@ -140,30 +139,10 @@
         android:textStyle="normal"
         android:typeface="monospace"
         android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/userInputBottom"
+        app:layout_constraintEnd_toStartOf="@+id/divide"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/square_root"
-        style="@style/Widget.MaterialComponents.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
-        android:layout_marginEnd="156dp"
-        android:backgroundTint="#64DD17"
-        android:backgroundTintMode="screen"
-        android:defaultFocusHighlightEnabled="true"
-        android:fontFamily="monospace"
-        android:keyboardNavigationCluster="true"
-        android:outlineProvider="background"
-        android:text="@string/sqrt"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textColorHighlight="#FF00EE"
-        android:typeface="monospace"
-        android:visibility="visible"
-        app:iconTint="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -171,9 +150,6 @@
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="34dp"
-        android:layout_marginBottom="2dp"
         android:backgroundTint="#64DD17"
         android:backgroundTintMode="screen"
         android:defaultFocusHighlightEnabled="true"
@@ -187,9 +163,11 @@
         android:typeface="monospace"
         android:visibility="visible"
         app:iconTint="#000000"
-        app:layout_constraintBottom_toBottomOf="@+id/userInputTop"
+        app:layout_constraintBottom_toTopOf="@+id/percent"
         app:layout_constraintEnd_toStartOf="@+id/square_root"
-        app:layout_constraintTop_toTopOf="@+id/square_root"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/userInputTop"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="/" />
 
     <Button
@@ -197,7 +175,6 @@
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
         android:backgroundTint="#64DD17"
         android:backgroundTintMode="screen"
         android:defaultFocusHighlightEnabled="true"
@@ -211,39 +188,19 @@
         android:typeface="monospace"
         android:visibility="visible"
         app:iconTint="#000000"
-        app:layout_constraintStart_toStartOf="@+id/percent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/subtract"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/result"
         app:layout_constraintTop_toBottomOf="@+id/percent"
+        app:layout_constraintVertical_bias="0.489"
         tools:text="+" />
-
-    <Button
-        android:id="@+id/percent"
-        style="@style/Widget.MaterialComponents.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
-        android:backgroundTint="#64DD17"
-        android:backgroundTintMode="screen"
-        android:defaultFocusHighlightEnabled="true"
-        android:fontFamily="monospace"
-        android:keyboardNavigationCluster="true"
-        android:outlineProvider="background"
-        android:text="@string/percent"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textColorHighlight="#FF00EE"
-        android:typeface="monospace"
-        android:visibility="visible"
-        app:iconTint="#000000"
-        app:layout_constraintStart_toStartOf="@+id/divide"
-        app:layout_constraintTop_toBottomOf="@+id/divide"
-        tools:text="%" />
 
     <Button
         android:id="@+id/subtract"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
         android:backgroundTint="#64DD17"
         android:backgroundTintMode="screen"
         android:defaultFocusHighlightEnabled="true"
@@ -257,16 +214,42 @@
         android:typeface="monospace"
         android:visibility="visible"
         app:iconTint="#000000"
-        app:layout_constraintStart_toStartOf="@+id/multiply"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/add"
         app:layout_constraintTop_toBottomOf="@+id/multiply"
         tools:text="-" />
+
+    <Button
+        android:id="@+id/square_root"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#64DD17"
+        android:backgroundTintMode="screen"
+        android:defaultFocusHighlightEnabled="true"
+        android:fontFamily="monospace"
+        android:keyboardNavigationCluster="true"
+        android:outlineProvider="background"
+        android:text="@string/sqrt"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textColorHighlight="#FF00EE"
+        android:typeface="monospace"
+        android:visibility="visible"
+        app:iconTint="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/multiply"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/divide"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/multiply"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
         android:backgroundTint="#64DD17"
         android:backgroundTintMode="screen"
         android:defaultFocusHighlightEnabled="true"
@@ -280,8 +263,107 @@
         android:typeface="monospace"
         android:visibility="visible"
         app:iconTint="#000000"
-        app:layout_constraintStart_toStartOf="@+id/square_root"
+        app:layout_constraintBottom_toTopOf="@+id/subtract"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/percent"
         app:layout_constraintTop_toBottomOf="@+id/square_root"
         tools:text="*" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/percent"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#64DD17"
+        android:backgroundTintMode="screen"
+        android:defaultFocusHighlightEnabled="true"
+        android:fontFamily="monospace"
+        android:keyboardNavigationCluster="true"
+        android:outlineProvider="background"
+        android:text="@string/percent"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textColorHighlight="#00E676"
+        android:typeface="monospace"
+        android:visibility="visible"
+        app:iconTint="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/add"
+        app:layout_constraintEnd_toStartOf="@+id/multiply"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/userInputBottom"
+        app:layout_constraintTop_toBottomOf="@+id/divide"
+        tools:text="%" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:barrierDirection="top"
+        app:constraint_referenced_ids="add,subtract"
+        tools:layout_editor_absoluteY="179dp" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:barrierDirection="top"
+        app:constraint_referenced_ids="percent,multiply"
+        tools:layout_editor_absoluteY="120dp" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:barrierDirection="top"
+        app:constraint_referenced_ids="divide,square_root"
+        tools:layout_editor_absoluteY="22dp" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:barrierDirection="left"
+        app:constraint_referenced_ids="userInputTop,add,percent,result,divide,userInputBottom"
+        tools:layout_editor_absoluteX="56dp" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:barrierDirection="left"
+        app:constraint_referenced_ids="percent,add,divide,subtract,square_root,multiply"
+        tools:layout_editor_absoluteX="296dp" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:barrierDirection="left"
+        app:constraint_referenced_ids="percent,add,divide,subtract,square_root,multiply"
+        tools:layout_editor_absoluteX="296dp" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:barrierDirection="left"
+        app:constraint_referenced_ids="subtract,square_root,multiply"
+        tools:layout_editor_absoluteX="433dp" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:barrierDirection="left"
+        tools:layout_editor_absoluteX="781dp" />
+
+</androidx.constraintlayout.motion.widget.MotionLayout>

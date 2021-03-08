@@ -15,7 +15,7 @@ Plug 'tomasiser/vim-code-dark'
 Plug 'tpope/vim-markdown'
 Plug 'dense-analysis/ale'
 Plug 'joshdick/onedark.vim'
-let g:ale_set_highlights = 0
+let g:ale_set_highlights = 1
 let g:ale_echo_msg_format = '%linter%: %s'
 let g:ale_linters = {
 			\   'python': ['flake8',],
@@ -36,7 +36,18 @@ let g:ale_fixers = {
 			\   'html': ['html-beautify'],
 			\}
 let g:ale_fix_on_save = 1
-
+let g:ale_completion_enabled = 1
+let g:ale_completion_autoimport = 1
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+" Write this in your vimrc file
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
+" You can disable this option too
+" if you don't want linters to run on opening a file
+let g:ale_lint_on_enter = 0
+let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰']
 Plug 'luochen1990/rainbow'
 let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
 
@@ -51,6 +62,7 @@ call plug#end()
 " Other settings go here
 " ------------------
 
+let g:onedark_termcolors=256
 set termguicolors
 syntax enable
 set number
@@ -67,23 +79,7 @@ let g:auto_save = 1
 
 " Python support
 " Let nvim know where the binaries are
-let g:python_host_prog = '/usr/bin/python'
-let g:python3_host_prog = '/usr/bin/python3'
 
 set textwidth=80
-au BufNewFile,BufRead *.py
-			\ set tabstop=4
-			\ softtabstop=4
-			\ shiftwidth=4
-			\ textwidth=80
-			\ expandtab
-			\ autoindent
-			\ fileformat=unix
-			\ foldmethod=indent
-
-au BufRead, BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
-
 " Colorscheme
 colorscheme onedark
-let g:onedark_termcolors=256
-

@@ -10,33 +10,33 @@ Link: https://www.raspberrypi.org/software/operating-systems/#raspberry-pi-os-32
 ## Pre-reqs
 
 ### What you’ll need
-
+```
     - microSD card (4GB minimum, 8GB recommended)
     - computer with a microSD card drive
     - Raspberry Pi 2, 3 or 4
     - micro-USB power cable (USB-C for the Pi 4)
     - Wi-Fi (local) network or an ethernet cable with an internet connection
+```
 
 ## Implementation
+Raspberry Pi official link : https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/2
 
-    Raspberry Pi official link : https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/2
+1) I used Raspberry Pi Imager, however Fedora Silverblue supports flatpack. I installed the Raspberry Pi Image from flathub.
 
-    1) I used Raspberry Pi Imager, however Fedora Silverblue supports flatpack. I installed the Raspberry Pi Image from flathub.
+Link: https://flathub.org/apps/details/org.raspberrypi.rpi-imager
 
-    Link: https://flathub.org/apps/details/org.raspberrypi.rpi-imager
+2) Used the Raspberry Pi Imager to download and write to the SD card
+3) Setting up the Raspberry Pi to connect to the Wi-Fi
 
-    2) Used the Raspberry Pi Imager to download and write to the SD card
-    3) Setting up the Raspberry Pi to connect to the Wi-Fi
+ Notes:
 
-    Notes:
-
-    - In order to pick up the Wi-Fi need to create an empty ssh in the boot directory
+- In order to pick up the Wi-Fi need to create an empty ssh in the boot directory
         after writing the OS to the SD card
-    - Create a file in boot directory wpa_supplicant.conf
+ - Create a file in boot directory wpa_supplicant.conf
 
     Should look something like this:
 
-    ```shell
+    ```
 
     country=US
     ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
@@ -52,9 +52,9 @@ Link: https://www.raspberrypi.org/software/operating-systems/#raspberry-pi-os-32
     4) Remove the SD card and boot the Raspberry Pi
     5) To ssh
 
-        ```bash
-        ssh pi@raspberrypi.local
-        ```
+        
+        `ssh pi@raspberrypi.local`
+        
 
     6) Modify host and password with `sudo raspi-config`
 
@@ -67,7 +67,7 @@ Link: https://www.raspberrypi.org/software/operating-systems/#raspberry-pi-os-32
 
 - execute the commands bellow
 
-    ``` bash
+    ```
     sudo apt-get update
     sudo apt-get upgrade
 
@@ -83,7 +83,7 @@ the 40 pin GPIO connector on your Raspberry Pi.
 Ensure the HAT fits fully on the Raspberry Pi.
 You can check it's working by typing the following straight in the terminal:
 
-    ```bash
+    ```
     python -c 'import time, explorerhat; explorerhat.light.on(); time.sleep(1); explorerhat.light.off()'
 
     ```
@@ -189,7 +189,7 @@ On the device you will use to take control, enter this information in VNC Viewer
 
 Example:
 
-```text
+```
 
 pi@Penguin:~ $ vncserver
 VNC(R) Server 6.7.2 (r42622) ARMv6 (May 13 2020 19:34:20)

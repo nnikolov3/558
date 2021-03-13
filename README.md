@@ -97,7 +97,7 @@ The board should blink the 4 LEDs.
 `sudo apt-get update`
 
 - Install the Mosquitto Library
-`sudo apt-get install moquitto`
+`sudo apt-get install mosquitto`
 
 - Install the client library
 `sudo apt-get install mosquitto-clients`

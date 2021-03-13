@@ -7,53 +7,53 @@ Link: https://www.raspberrypi.org/software/operating-systems/#raspberry-pi-os-32
 ## Pre-reqs
 
 ### What you’ll need
-```
-    - microSD card (4GB minimum, 8GB recommended)
-    - computer with a microSD card drive
-    - Raspberry Pi 2, 3 or 4
-    - micro-USB power cable (USB-C for the Pi 4)
-    - Wi-Fi (local) network or an ethernet cable with an internet connection
-```
+  ```
+- microSD card (4GB minimum, 8GB recommended)
+  - computer with a microSD card drive
+  - Raspberry Pi 2, 3 or 4
+- micro-USB power cable (USB-C for the Pi 4)
+  - Wi-Fi (local) network or an ethernet cable with an internet connection
+  ```
 
 ## Implementation
-Raspberry Pi official link : https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/2
+  Raspberry Pi official link : https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/2
 
-1) I used Raspberry Pi Imager, however Fedora Silverblue supports flatpack. I installed the Raspberry Pi Image from flathub.
+  1) I used Raspberry Pi Imager, however Fedora Silverblue supports flatpack. I installed the Raspberry Pi Image from flathub.
 
-Link: https://flathub.org/apps/details/org.raspberrypi.rpi-imager
+  Link: https://flathub.org/apps/details/org.raspberrypi.rpi-imager
 
-2) Used the Raspberry Pi Imager to download and write to the SD card
-3) Setting up the Raspberry Pi to connect to the Wi-Fi
+  2) Used the Raspberry Pi Imager to download and write to the SD card
+  3) Setting up the Raspberry Pi to connect to the Wi-Fi
 
- Notes:
+  Notes:
 
-- In order to pick up the Wi-Fi need to create an empty ssh in the boot directory
-        after writing the OS to the SD card
- - Create a file in boot directory wpa_supplicant.conf
+  - In order to pick up the Wi-Fi need to create an empty ssh in the boot directory
+  after writing the OS to the SD card
+  - Create a file in boot directory wpa_supplicant.conf
 
-    Should look something like this:
+  Should look something like this:
 
-    ```
+  ```
 
-    country=US
-    ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
-    update_config=1
+  country=US
+  ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+  update_config=1
 
-    network={
-        ssid="<name of wifi>"
-            psk="<your wifi password"
-    }
+  network={
+    ssid="<name of wifi>"
+      psk="<your wifi password"
+  }
 
-    ```
+```
 
-    4) Remove the SD card and boot the Raspberry Pi
-    5) To ssh
-
-
-        `ssh pi@raspberrypi.local`
+4) Remove the SD card and boot the Raspberry Pi
+5) To ssh
 
 
-    6) Modify host and password with `sudo raspi-config`
+`ssh pi@raspberrypi.local`
+
+
+6) Modify host and password with `sudo raspi-config`
 
 
 # Setting up the pimoroni explorer pro hat
@@ -64,26 +64,26 @@ Link: https://flathub.org/apps/details/org.raspberrypi.rpi-imager
 
 - execute the commands bellow
 
-    ```
-    sudo apt-get update
-    sudo apt-get upgrade
+```
+sudo apt-get update
+sudo apt-get upgrade
 
-    curl https://get.pimoroni.com/i2c | bash
-    sudo apt-get install python-smbus
-    sudo apt-get install python-pip
-    sudo pip install explorerhat
+curl https://get.pimoroni.com/i2c | bash
+sudo apt-get install python-smbus
+sudo apt-get install python-pip
+sudo pip install explorerhat
 
-    ```
+```
 
 Next, you'll want to plug your Explorer HAT Pro into
 the 40 pin GPIO connector on your Raspberry Pi.
 Ensure the HAT fits fully on the Raspberry Pi.
 You can check it's working by typing the following straight in the terminal:
 
-    ```
-    python -c 'import time, explorerhat; explorerhat.light.on(); time.sleep(1); explorerhat.light.off()'
+```
+python -c 'import time, explorerhat; explorerhat.light.on(); time.sleep(1); explorerhat.light.off()'
 
-    ```
+```
 
 The board should blink the 4 LEDs.
 
@@ -125,7 +125,7 @@ pi@Penguin:~ $
 
 ```
 - Check if Mosquitto is listenning the default server
-    `netstat -an | grep 1883`
+`netstat -an | grep 1883`
 
 Example output:
 
@@ -151,9 +151,9 @@ If you’re already using an older version of VNC Server, restart it.
 If not, and you’re already booted into the graphical desktop,
    select Menu > Preferences > Raspberry Pi Configuration > Interfaces and make sure VNC is set to Enabled.
 
-Alternatively, run the command `sudo raspi-onfig` , navigate to Interfacing Options > VNC and select Yes.
+   Alternatively, run the command `sudo raspi-onfig` , navigate to Interfacing Options > VNC and select Yes.
 
-Source: https://help.realvnc.com/hc/en-us/articles/360002249917-VNC-Connect-and-Raspberry-Pi#setting-up-your-raspberry-pi-0-0
+   Source: https://help.realvnc.com/hc/en-us/articles/360002249917-VNC-Connect-and-Raspberry-Pi#setting-up-your-raspberry-pi-0-0
 
 ## Download Remmina for your OS - I used a flatpak from here: https://flathub.org/apps/details/org.remmina.Remmina
 
@@ -162,8 +162,8 @@ Source: https://help.realvnc.com/hc/en-us/articles/360002249917-VNC-Connect-and-
    ssh in the raspberry pi
 
    - `sudo vncpasswd -service`
-        Update the password for the vnc
-        I kept both (ssh and vnc) the same
+   Update the password for the vnc
+   I kept both (ssh and vnc) the same
    - `sudo nano /root/.vnc/config.d/vncserver-x11`
 
    - and add the following line at the end of the file:
@@ -172,32 +172,32 @@ Source: https://help.realvnc.com/hc/en-us/articles/360002249917-VNC-Connect-and-
 
 ## Creating and remoting a virtual desktop
 
-If your Raspberry Pi is headless (that is, not plugged into a monitor) or
-embedded in a robot, it’s unlikely to be running a graphical desktop.
+   If your Raspberry Pi is headless (that is, not plugged into a monitor) or
+   embedded in a robot, it’s unlikely to be running a graphical desktop.
 
-VNC Server can run in Virtual Mode to create a resource-efficient virtual desktop on demand,
-giving you graphical remote access even when there is no actual desktop to remote.
-This virtual desktop exists only in your Raspberry Pi’s memory
+   VNC Server can run in Virtual Mode to create a resource-efficient virtual desktop on demand,
+   giving you graphical remote access even when there is no actual desktop to remote.
+   This virtual desktop exists only in your Raspberry Pi’s memory
 
 
-On your Raspberry Pi, run the command `vncserver`.
-Make a note of the IP address/display number printed to the console, for example `192.167.5.149:1`.
-On the device you will use to take control, enter this information in VNC Viewer.
+   On your Raspberry Pi, run the command `vncserver`.
+   Make a note of the IP address/display number printed to the console, for example `192.167.5.149:1`.
+   On the device you will use to take control, enter this information in VNC Viewer.
 
-Example:
+   Example:
 
-```
+   ```
 
-pi@Penguin:~ $ vncserver
+  pi@Penguin:~ $ vncserver
 VNC(R) Server 6.7.2 (r42622) ARMv6 (May 13 2020 19:34:20)
-Copyright (C) 2002-2020 RealVNC Ltd.
-RealVNC and VNC are trademarks of RealVNC Ltd and are protected by trademark
-registrations and/or pending trademark applications in the European Union,
-United States of America and other jurisdictions.
-Protected by UK patent 2481870; US patent 8760366; EU patent 2652951.
-See https://www.realvnc.com for information on VNC.
-For third party acknowledgements see:
-https://www.realvnc.com/docs/6/foss.html
+  Copyright (C) 2002-2020 RealVNC Ltd.
+  RealVNC and VNC are trademarks of RealVNC Ltd and are protected by trademark
+  registrations and/or pending trademark applications in the European Union,
+  United States of America and other jurisdictions.
+  Protected by UK patent 2481870; US patent 8760366; EU patent 2652951.
+  See https://www.realvnc.com for information on VNC.
+  For third party acknowledgements see:
+  https://www.realvnc.com/docs/6/foss.html
 OS: Raspbian GNU/Linux 10, Linux 5.10.11, armv7l
 
 Generating private key... done
@@ -211,7 +211,7 @@ implementation, please see: https://www.realvnc.com/doclink/kb-546
 Running applications in /etc/vnc/xstartup
 
 VNC Server catchphrase: "Quality insect magenta. Combat sushi mars."
-             signature: bd-27-97-92-c3-94-4d-44
+signature: bd-27-97-92-c3-94-4d-44
 
 Log file is /home/pi/.vnc/Penguin:1.log
 New desktop is Penguin:1 (10.0.0.198:1)
@@ -233,8 +233,8 @@ Common commands for Raspberry Pi OS (previously called Raspbian) Jessie
 
 - `sudo raspi-config`
 -  Interface options
-    - Enable VNC
-    - Enable SSH
+- Enable VNC
+- Enable SSH
 
 
 
@@ -242,44 +242,44 @@ Common commands for Raspberry Pi OS (previously called Raspbian) Jessie
 
 In /boot/config.txt add:
 
-    hdmi_force_hotplug
-    hdmi_group 2
-    hdmi_group 16 - this one you might need to modify based on your monitor
-                    in my case I used 76 (2560 x 1600)
+hdmi_force_hotplug
+hdmi_group 2
+  hdmi_group 16 - this one you might need to modify based on your monitor
+in my case I used 76 (2560 x 1600)
 
 
 
 ## Using key-based authentication
 
-Link with information: https://www.raspberrypi.org/documentation/configuration/security.md
-Thd link above will explain how to modify the user from pi to something else
+  Link with information: https://www.raspberrypi.org/documentation/configuration/security.md
+  Thd link above will explain how to modify the user from pi to something else
 
-More on ssh key : ssh-copy-id <USERNAME>@<IP-ADDRESS>
+  More on ssh key : ssh-copy-id <USERNAME>@<IP-ADDRESS>
 
-In your laptop type : https://www.raspberrypi.org/documentation/remote-access/ssh/passwordless.md#copy-your-public-key-to-your-raspberry-pi
+  In your laptop type : https://www.raspberrypi.org/documentation/remote-access/ssh/passwordless.md#copy-your-public-key-to-your-raspberry-pi
 
-- The most basic steps are:
+  - The most basic steps are:
 
-`ssh-keygen`
+  `ssh-keygen`
 
-And then copy the key to the Raspberry Pi
+  And then copy the key to the Raspberry Pi
 
-`ssh-copy-id <USERNAME>@<IP-ADDRESS>`
+  `ssh-copy-id <USERNAME>@<IP-ADDRESS>`
 
-After than you can ssh without typing your password every time
+  After than you can ssh without typing your password every time
 
 
-Example of successful VNC session:
+  Example of successful VNC session:
 
 ![](images/successful-vnc-session.png)
 # Useful commands
 
-- Find the IP address of Raspberry Pi
-    `hostname -I`
+  - Find the IP address of Raspberry Pi
+  `hostname -I`
 
-- Find the status of the mosquitto service
-    `service mosquitto status`
+  - Find the status of the mosquitto service
+  `service mosquitto status`
 
-- MQTT client that publishes a message to the topic
-    `moquitto_pub -V mqttv311 -t <topic> -m "<message>"
-c
+  - MQTT client that publishes a message to the topic
+  `moquitto_pub -V mqttv311 -t <topic> -m "<message>"
+  c

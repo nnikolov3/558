@@ -100,12 +100,11 @@ def main():
 
     # Callback for the led drivers
     Subscriber.start_deamon()
-    const.CLIENT.loop_start()
     const.CLIENT.on_connect = Subscriber.on_connect(const.CLIENT)
     const.CLIENT.on_subscribe = Subscriber.on_subscribe
+    # Callback when message ON and OFF is received
     const.CLIENT.message_callback_add("led1", Subscriber.on_message_led1)
     const.CLIENT.message_callback_add("led2", Subscriber.on_message_led2)
-
     const.CLIENT.loop_forever()
 
 

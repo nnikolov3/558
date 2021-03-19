@@ -6,7 +6,7 @@ purpose: Get all the readings from the sensor
 
 import paho.mqtt.client as mqtt
 import re
-
+import socket
 import explorerhat as HAT
 
 # Print a welcoming message
@@ -22,7 +22,7 @@ print("==========================================")
 class const:
     """ Constants """
 
-    HOST = "Penguin"
+    HOST = socket.gethostname()
     KEEPALIVE = 60
     CLIENT = mqtt.Client()
     PORT = 1883

@@ -10,6 +10,7 @@ from datetime import datetime
 import adafruit_dht
 from ISStreamer.Streamer import Streamer
 import board
+import socket
 
 # stamp
 NOW = datetime.now()
@@ -28,7 +29,7 @@ print("==========================================")
 class constants:
     """ Constants """
 
-    HOST = "Penguin"
+    HOST = socket.gethostname()
     KEEPALIVE = 60
     CLIENT = mqtt.Client()
     DEVICE = adafruit_dht.DHT22(board.D3)
@@ -53,8 +54,7 @@ class Publisher(object):
         B_KEY = "8MVMYVW8D9XN"
         A_KEY = "ist_JtPyZAci_C-lCO0cxFT4YxrDfjJP00oU"
         B_NAME = "dht22"
-        streamer = Streamer(bucket_name=B_NAME,
-                            bucket_key=B_KEY, access_key=A_KEY)
+        streamer = Streamer(bucket_name=B_NAME, bucket_key=B_KEY, access_key=A_KEY)
         streamer.log("TEMP_C ", _temp_c)
         sleep(0.5)
         streamer.log("TEMP_F ", _temp_f)
